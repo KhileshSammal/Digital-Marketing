@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuditMyAds™</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3182ce;
+            border-radius: 9999px;
+        }
+        
+        /* New centered section title style */
+        .section-title-center {
+            text-align: center;
+        }
+        
+        .section-title-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom style for icon backgrounds */
+        .icon-bg {
+            background-image: radial-gradient(circle, #63b3ed, #3182ce);
+        }
+
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            padding: 0 1rem;
+        }
+
+        .faq-answer.active {
+            max-height: 1000px;
+            padding: 1rem;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .chevron.active {
+            transform: rotate(180deg);
+        }
+
+        .floating-buttons-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-button span {
+            font-size: 1.5rem; /* Adjust emoji size */
+        }
+        
+        .creative-title {
+            font-family: 'Bebas Neue', cursive;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .creative-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+        
+        .photo-container {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        @media (min-width: 768px) {
+            .photo-container {
+                width: 20rem;
+                height: 20rem;
+            }
+        }
+
+        /* Google Ads grid texture */
+        .ads-hero-bg {
+            background-color: #f7fafc;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='100' viewBox='0 0 80 80'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 80px 80px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">AuditMyAds™</a>
+            <div class="space-x-4">
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
+                <a href="#ads-audit" class="text-gray-600 hover:text-blue-600 transition-colors">AuditMyAds™</a>
+                <a href="#case-study" class="text-gray-600 hover:text-blue-600 transition-colors">Case Study</a>
+                <a href="#faq" class="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- New Hero Section -->
+        <section id="ads-hero" class="py-24 text-center ads-hero-bg">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">Get more sales from Google Ads with<br><span class="text-blue-600">AuditMyAds™</span></h1>
+            <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                I’ll document and report all issues in your Google Ads account and website, handle the fixes, and include a free month of campaign management.
+            </p>
+            <a href="https://wa.me/917505809379" target="_blank"
+                class="mt-8 inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transition-colors transform hover:scale-105">
+                Book a Discovery Call
+            </a>
+        </section>
+
+        <!-- My Expertise and Mission Section (Combines About Me and Meet your PPC partner) -->
+        <section id="about" class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="text-3xl font-bold text-gray-900">My Expertise and Mission</h2>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-8 mt-4">
+                    <!-- Photo Slot -->
+                    <div class="flex-shrink-0 flex justify-center items-center photo-container">
+                        <div class="rounded-full overflow-hidden border-4 border-blue-600 shadow-lg w-full h-full">
+                            <img src="assets/1.jpeg" alt="Your professional headshot" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="space-y-6 md:w-2/3">
+                        <p class="text-gray-600 leading-relaxed">
+                            Hello! I'm a digital marketing expert with 2+ years of hands-on experience in search campaign management. I spent 1.5+ years supporting Google Ads directly and have been freelancing for the past 6+ months, helping businesses optimize their ad performance.
+                        </p>
+                        <h3 class="text-xl font-bold text-gray-900">I specialize in:</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Creating high-converting Google Ads campaigns</li>
+                            <li>Writing compelling ad copies</li>
+                            <li>Building top-performing assets that follow Google’s policies and best practices</li>
+                        </ul>
+                        <p class="text-gray-600 leading-relaxed">
+                            Whether you need to fix existing campaigns or launch from scratch, I bring proven strategies that drive real, measurable results.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            AuditMyAds™ is my full-service digital marketing agency—focused on data-driven growth, tailored strategies, and delivering results that matter.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Struggling with Growth Section -->
+        <section class="py-12">
+            <div class="flex flex-col items-center">
+                <h2 class="creative-title text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900">
+                    Sometimes, you just need to
+                    <span class="text-red-500">know what’s broken</span>
+                </h2>
+                <h2 class="creative-title text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mt-2">
+                    and
+                    <span class="text-green-500">fix it</span>
+                </h2>
+            </div>
+
+            <div class="mt-8">
+                <p class="creative-subtitle text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto text-center">
+                    Struggling with Growth?
+                    <br>
+                    Despite trying numerous agencies or hiring marketing experts, you might find that leads and sales aren’t improving. A fresh, expert approach could make all the difference.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-md mt-12">
+                <h4 class="text-3xl font-bold text-gray-900 mb-8 text-center creative-subtitle">Your challenges</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="flex items-start p-4 rounded-lg">
+                        <span class="text-4xl mr-4">📈</span>
+                        <div>
+                            <h5 class="font-bold text-gray-900">Google Ads is becoming more complex</h5>
+                            <p class="text-gray-600">Digital marketing platforms like Google Ads are getting more technical. A successful campaign setup requires deep technical knowledge.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 rounded-lg">
+                        <span class="text-4xl mr-4">🔧</span>
+                        <div>
+                            <h5 class="font-bold text-gray-900">You're not sure what the best structure is</h5>
+                            <p class="text-gray-600">Setting up a campaign for success has changed a lot over the years. You need to do it correctly, without falling into costly traps.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 rounded-lg">
+                        <span class="text-4xl mr-4">🌐</span>
+                        <div>
+                            <h5 class="font-bold text-gray-900">You're not sure your website is converting</h5>
+                            <p class="text-gray-600">You don’t know whether your website is converting clicks into customers effectively. Even if your offer & setup is perfect, a bad website can hold you back.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 rounded-lg">
+                        <span class="text-4xl mr-4">💰</span>
+                        <div>
+                            <h5 class="font-bold text-gray-900">It's Getting Very Expensive</h5>
+                            <p class="text-gray-600">Click costs have increased significantly over the last 5 years. Managing costs has never been more important! Making a profit requires expertise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution Section -->
+        <section class="py-12">
+            <div class="flex flex-col items-center text-center">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">The solution</h2>
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-6">The Ads Audit™</h3>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Get the answers you need and the results you deserve!</p>
+                <p class="text-md text-gray-600 max-w-3xl mx-auto mt-2">
+                    Experience amazing growth through a revamped Google Ads campaign. Get instant access to 13+ years of Google Ads expertise and a clear path forward to Google Ads success.
+                </p>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">The most complete Google Ads audit</h2>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md space-y-6">
+                <p class="text-gray-600 mb-6">The Ads Audit™ will get to the heart of your business and Google Ads account performance. Here’s how it works.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">📋</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">1. Pre audit checklist</h3>
+                            <p class="text-gray-600 mt-2">I will provide you with a brief questionnaire to complete, which will help me gain a clear understanding of your business. If you wish, you can <a href="#" class="text-blue-600 hover:underline">preview it here</a> before you buy your audit.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">📞</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">2. Kick off call</h3>
+                            <p class="text-gray-600 mt-2">We’ll have a discussion about your business and the information you provided in the questionnaire. At this stage, I am gaining a deep understanding of your business ahead of the account audit.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">🔍</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">3. Audit Begins</h3>
+                            <p class="text-gray-600 mt-2">With a comprehensive understanding of your business, I can now begin the audit. I will conduct an in-depth analysis of your Google Ads account and website to identify ways to enhance performance.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">📊</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">4. Presentation of findings</h3>
+                            <p class="text-gray-600 mt-2">All findings are meticulously documented and presented to you. Every issue, whether big or small, impacting your campaign performance is logged. This will give you a comprehensive understanding of your account’s performance and a clear path forward to success.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">⚙️</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">5. Changes made in your account</h3>
+                            <p class="text-gray-600 mt-2">All necessary changes will be made to your account. This typically involves a complete rebuild of your campaigns with an improved setup designed to achieve better results. Additionally, any conversion tracking issues will be resolved and any improvements required for your website will be briefed.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <span class="text-4xl text-blue-600 mr-4">📈</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-900">6. One month of free management</h3>
+                            <p class="text-gray-600 mt-2">Once the updates to your account are live, I will manage your ads for one month to ensure the changes achieve the expected impact. After this period, many businesses feel confident managing their own campaigns, as the main issues have been addressed. However, if you’d prefer continued support, I would be delighted to partner with you as your dedicated PPC specialist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">Our Services</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Service Card 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        🔍
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Search Engine Optimization (SEO)</h3>
+                    <p class="text-gray-600">Improve your visibility on search engines and attract more organic
+                        traffic to your website.</p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        ✍️
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Content Marketing</h3>
+                    <p class="text-gray-600">Create valuable, relevant content to engage your audience and build brand
+                        loyalty.</p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        📱
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Social Media Management</h3>
+                    <p class="text-gray-600">Build a strong social media presence and connect with your customers
+                        on their favorite platforms.</p>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        📊
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Data Analytics</h3>
+                    <p class="text-gray-600">Gain actionable insights from your data to optimize campaigns and
+                        improve ROI.</p>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        📢
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Paid Advertising</h3>
+                    <p class="text-gray-600">Run targeted ad campaigns on platforms like Google, Facebook, and
+                        LinkedIn to drive qualified leads.</p>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition-transform">
+                    <div
+                        class="w-12 h-12 rounded-full icon-bg flex items-center justify-center mb-4 text-white text-xl">
+                        📧
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Email Marketing</h3>
+                    <p class="text-gray-600">Nurture leads and build lasting customer relationships with
+                        effective email campaigns.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Ads Audit™ Section -->
+        <section id="ads-audit" class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="creative-title text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-12">
+                    <span class="text-blue-600">AuditMyAds™</span> goes beyond just Google Ads,
+                  <p> get a clear roadmap towards success! </h2> </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 rounded-xl shadow-md bg-white">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <span class="text-6xl mb-4">📈</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Conversion Tracking Audit</h3>
+                    <p class="text-gray-600 text-sm">Without proper conversion tracking, success is difficult. I’ll audit your setup, ensuring all activity is tracked correctly and implement enhanced conversions.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <span class="text-6xl mb-4">🌐</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Website Audit</h3>
+                    <p class="text-gray-600 text-sm">If your website isn’t generating sales, it needs work. I’ll review it and share an optimization plan for better conversions.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <span class="text-6xl mb-4">🔍</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Google Ads Account Audit</h3>
+                    <p class="text-gray-600 text-sm">Your Google Ads account structure, keywords, ads and setup can make or break your campaign. I’ll ensure your ads are set up for success.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-12">
+                <h3 class="text-2xl font-semibold text-gray-900 mt-4 mb-2 text-center">Understand the issues hurting your performance and get them fixed</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">📝</span>
+                        <h4 class="font-bold text-lg text-gray-900">Diagnosis of account issues</h4>
+                        <p class="text-gray-600 text-sm">Underperformance always has a root cause, and I will identify the issues preventing your success with Google Ads.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">📊</span>
+                        <h4 class="font-bold text-lg text-gray-900">Issues documented in a presentation</h4>
+                        <p class="text-gray-600 text-sm">A detailed and well-explained report of your account’s issues will offer a clear understanding of how to optimise your Google Ads for better performance and growth.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">⚙️</span>
+                        <h4 class="font-bold text-lg text-gray-900">Changes made in the account</h4>
+                        <p class="text-gray-600 text-sm">After we’ve discussed the issues identified in your account, I’ll begin implementing the necessary fixes. This often includes creating a new campaign setup and re-establishing effective conversion tracking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4 mt-12">
+                <h3 class="text-2xl font-semibold text-gray-900 mt-4 mb-2 text-center">What Makes AuditMyAds™ Different?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">💡</span>
+                        <h4 class="font-bold text-lg text-gray-900">Beyond Basic Advertising</h4>
+                        <p class="text-gray-600 text-sm">Thriving in today’s market requires more than just a basic understanding of Google Ads. It demands deep commercial insight and advanced technical skills.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">🚀</span>
+                        <h4 class="font-bold text-lg text-gray-900">Expertise That Delivers</h4>
+                        <p class="text-gray-600 text-sm">Benefit from the strategies, tools, and insights I’ve developed through managing millions in advertising spend across global and local markets.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                        <span class="text-4xl text-blue-600 mb-2">🧠</span>
+                        <h4 class="font-bold text-lg text-gray-900">Outside The Box Thinking</h4>
+                        <p class="text-gray-600 text-sm">Go beyond Google Ads! My commercial expertise and processes will delve into your business, creating a winning strategy based on a thorough understanding of your challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Section -->
+        <section id="case-study" class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">Case study - AuditMyAds™</h2>
+            </div>
+            <div class="glass-card p-8 rounded-xl shadow-md">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- The Problem Column -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-gray-900">The Problem</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">📝</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Legacy structure and bid strategy</h4>
+                                    <p class="text-gray-600">Adgroups were not correctly segmented and the account was using manual CPC.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">📝</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Incorrect use of Responsive Search Ads</h4>
+                                    <p class="text-gray-600">Ad content wasn’t diverse, with no focus on benefits and no call to action.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">📝</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Issues with search terms data</h4>
+                                    <p class="text-gray-600">Ads were wasting budget with clicks for business names which didn’t convert and were difficult to eliminate with negatives on an ongoing basis.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Solution Column -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-gray-900">The Solution</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">✅</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Full campaign rebuild</h4>
+                                    <p class="text-gray-600">Detailed keyword research to ensure full coverage, campaign restructured in a way that is well segmented, but still allowed for smart bidding success.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">✅</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Ad Content Research</h4>
+                                    <p class="text-gray-600">We listed all benefits, USPs and customer actions to write relevant and compelling ads.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">✅</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Use of AI</h4>
+                                    <p class="text-gray-600">Using an engineered prompt, I used ChatGPT to identify search terms (within large 9k+ search term reports) containing the names of other businesses in order to eliminate them.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-2 text-center">The Results</h3>
+                    <div class="flex flex-col sm:flex-row items-center justify-between mt-4 space-y-4 sm:space-y-0 sm:space-x-8 text-center">
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl font-extrabold text-blue-600">57%</span>
+                            <p class="text-lg text-gray-600">Increase in conversions</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl font-extrabold text-blue-600">-22%</span>
+                            <p class="text-lg text-gray-600">Decrease in cost per conversion</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl font-extrabold text-blue-600">43%</span>
+                            <p class="text-lg text-gray-600">Increase in conversion revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<p></p>
+             <!-- Image Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div class="flex justify-center items-center">
+                        <img class="rounded-lg shadow-md w-full h-auto" src="https://placehold.co/400x300/a0aec0/ffffff?text=Image+1" alt="Case study image 1">
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <img class="rounded-lg shadow-md w-full h-auto" src="https://placehold.co/400x300/a0aec0/ffffff?text=Image+2" alt="Case study image 2">
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <img class="rounded-lg shadow-md w-full h-auto" src="https://placehold.co/400x300/a0aec0/ffffff?text=Image+3" alt="Case study image 3">
+                    </div>
+                </div>
+                
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="py-12 mt-8">
+            <div class="section-title section-title-center">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">Book a Consultation</h2>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <p class="text-gray-600 mb-6">Fill out the form below to book a free, no-obligation consultation with our team.
+                    We'll discuss your needs and how we can help your business thrive.</p>
+                <form id="bookingForm" onsubmit="sendWhatsAppMessage(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-1">Your Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-1">Your Phone Number</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="business-category" class="block text-gray-700 font-medium mb-1">Your Business Category</label>
+                            <input type="text" id="business-category" name="business-category"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="service" class="block text-gray-700 font-medium mb-1">Service of Interest</label>
+                            <select id="service" name="service" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="SEO">Search Engine Optimization (SEO)</option>
+                                <option value="Content Marketing">Content Marketing</option>
+                                <option value="Social Media">Social Media Management</option>
+                                <option value="Data Analytics">Data Analytics</option>
+                                <option value="Paid Advertising">Paid Advertising</option>
+                                <option value="Email Marketing">Email Marketing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="message" class="block text-gray-700 font-medium mb-1">Tell us more</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg shadow-md transition-colors">Submit
+                        Booking Request</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // JavaScript function to send form data to WhatsApp
+        function sendWhatsAppMessage(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const name = form.querySelector('#name').value;
+            const email = form.querySelector('#email').value;
+            const phone = form.querySelector('#phone').value;
+            const businessCategory = form.querySelector('#business-category').value;
+            const service = form.querySelector('#service').value;
+            const message = form.querySelector('#message').value;
+
+            const whatsappNumber = "917505809379"; // Your WhatsApp number
+
+            // Construct the message
+            const whatsappMessage = `Hello, I would like to book a consultation. Here are my details:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nBusiness Category: ${businessCategory}\nService of Interest: ${service}\nMessage: ${message}`;
+
+            // URL-encode the message
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-12">
+            <div class="section-title section-title-center">
+                <h2 class="creative-title text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">Frequently Asked Questions</h2>
+            </div>
+            <div class="glass-card p-8 rounded-xl shadow-md space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-gray-900">1. How do I know this is right for my business?</h3>
+                        <svg class="chevron w-6 h-6 text-blue-600 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 px-4">
+                        <p class="text-gray-600">
+                            If your business is generating traffic through Google Ads and you want better results, then our AuditMyAds™ will be right for you. I work with businesses of all sizes ranging from small micro businesses all the way up to global FTSE100 and NASDAQ corporate organisations. Whatever the size or industry niche, I’m certain I can make you more sales. See previous examples of who has contacted me for AuditMyAds™:
+                        </p>
+                        <ul class="list-disc list-inside mt-2 text-gray-600">
+                            <li>Small business owners</li>
+                            <li>Generalist marketing and PR freelancers needing a digital expert</li>
+                            <li>In-house marketing managers and directors needing a second opinion</li>
+                            <li>Stretched agencies who need expertise on demand and a second opinion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-gray-900">2. What happens after we agree to work together?</h3>
+                        <svg class="chevron w-6 h-6 text-blue-600 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 px-4">
+                        <p class="text-gray-600">
+                            When we get started, I won’t only work on building winning campaigns. I will get a full understanding of your business. It’s important to see where your business sits in the overall landscape within your niche. Although we may be partnering to work on one channel, e.g. Google Ads, the effectiveness of digital marketing is linked to your website’s ability to convert leads into sales, correct tracking of conversions and an end to end analysis of your businesses digital processes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-gray-900">3. How much do you charge?</h3>
+                        <svg class="chevron w-6 h-6 text-blue-600 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 px-4">
+                        <p class="text-gray-600">
+                            Audits start from 10 USD. I don't charge an arm and a leg for a high-quality audit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-gray-900">4. Do you do 12-month contracts?</h3>
+                        <svg class="chevron w-6 h-6 text-blue-600 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer mt-2 px-4">
+                        <p class="text-gray-600">
+                            No. In today’s market where businesses need a solution that is flexible and delivers, I want businesses I partner with to be confident that I can deliver results.
+                            Locking a business into a 12 month contract doesn’t inspire confidence. For that reason, I work to monthly rolling agreements after the audit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Follow Me Section -->
+            <div>
+                <h4 class="text-xl font-semibold text-white mb-4">Follow Me</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">YouTube</a></li>
+                    <li><a href="https://wa.me/917505809379" target="_blank" class="hover:text-white transition-colors">WhatsApp</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+                </ul>
+            </div>
+
+            <!-- Address Section -->
+            <div>
+                <h4 class="text-xl font-semibold text-white mb-4">Address</h4>
+                <p>Haldwani, Uttarakhand, India</p>
+            </div>
+
+            <!-- Helpful Links Section -->
+            <div>
+                <h4 class="text-xl font-semibold text-white mb-4">Helpful Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Refund Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-8 border-t border-gray-700 pt-8 text-center">
+            <p>&copy; 2024 AuditMyAds™. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-buttons-container space-y-4">
+        <div id="contact-buttons" class="flex flex-col items-end space-y-4 opacity-0 transition-opacity duration-300">
+            <a href="https://www.instagram.com" target="_blank" class="floating-button bg-pink-500 hover:bg-pink-600">
+                <span class="text-xl">📸</span>
+            </a>
+            <a href="https://wa.me/917505809379" target="_blank" class="floating-button bg-green-500 hover:bg-green-600">
+                <span class="text-xl">💬</span>
+            </a>
+            <a href="tel:+917505809379" class="floating-button bg-blue-600 hover:bg-blue-700">
+                <span class="text-xl">📞</span>
+            </a>
+        </div>
+        <button id="contact-fab" class="floating-button bg-blue-600 hover:bg-blue-700 ml-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 transition-transform duration-300 transform">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM15 12a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-question');
+            faqItems.forEach(item => {
+                item.addEventListener('click', event => {
+                    const parent = event.target.closest('.faq-question').parentElement;
+                    const answer = parent.querySelector('.faq-answer');
+                    const chevron = parent.querySelector('.chevron');
+                    
+                    answer.classList.toggle('active');
+                    chevron.classList.toggle('active');
+                });
+            });
+
+            const fab = document.getElementById('contact-fab');
+            const contactButtons = document.getElementById('contact-buttons');
+
+            fab.addEventListener('click', () => {
+                const isHidden = contactButtons.classList.contains('opacity-0');
+                if (isHidden) {
+                    contactButtons.classList.remove('opacity-0');
+                    contactButtons.classList.add('flex');
+                    fab.classList.add('rotate-45');
+                } else {
+                    contactButtons.classList.add('opacity-0');
+                    fab.classList.remove('rotate-45');
+                    setTimeout(() => {
+                        contactButtons.classList.remove('flex');
+                    }, 300); // Wait for transition to finish
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
